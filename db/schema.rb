@@ -10,22 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_10_151926) do
+ActiveRecord::Schema.define(version: 2023_04_10_154839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customer_items", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_customer_items_on_customer_id"
+    t.index ["item_id"], name: "index_customer_items_on_item_id"
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "customers_items", id: false, force: :cascade do |t|
-    t.bigint "customer_id"
-    t.bigint "item_id"
-    t.index ["customer_id"], name: "index_customers_items_on_customer_id"
-    t.index ["item_id"], name: "index_customers_items_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -44,6 +46,6 @@ ActiveRecord::Schema.define(version: 2023_04_10_151926) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "customers_items", "customers"
-  add_foreign_key "customers_items", "items"
+  add_foreign_key "customer_items", "customers"
+  add_foreign_key "customer_items", "items"
 end

@@ -1,8 +1,9 @@
-class CreateJoinTableCustomersItems < ActiveRecord::Migration[5.2]
+class CreateCustomerItems < ActiveRecord::Migration[5.2]
   def change
-    create_join_table :customers, :items do |t|
+    create_table :customer_items do |t|
       t.references :customer, foreign_key: true
       t.references :item, foreign_key: true
+      t.timestamps
     end
   end
 end
