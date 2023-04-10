@@ -4,7 +4,6 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :price
       t.references :supermarket
-      t.references :customer
       t.timestamps
     end
   end

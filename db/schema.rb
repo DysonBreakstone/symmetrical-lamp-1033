@@ -17,10 +17,8 @@ ActiveRecord::Schema.define(version: 2023_04_10_151926) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
-    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_customers_on_item_id"
   end
 
   create_table "customers_items", id: false, force: :cascade do |t|
@@ -34,10 +32,8 @@ ActiveRecord::Schema.define(version: 2023_04_10_151926) do
     t.string "name"
     t.integer "price"
     t.bigint "supermarket_id"
-    t.bigint "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_items_on_customer_id"
     t.index ["supermarket_id"], name: "index_items_on_supermarket_id"
   end
 
