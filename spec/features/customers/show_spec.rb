@@ -62,10 +62,10 @@ RSpec.describe 'Customer Show page', type: :feature do
       visit "/customers/#{@customer3.id}"
 
       expect(page).to have_no_content("item1")
-      save_and_open_page
+
       fill_in("item_id", with: @item1.id)
       click_button("Add this item")
-      save_and_open_page
+      
       expect(page).to have_content("item1")
     end
   end

@@ -1,0 +1,8 @@
+<% @items.each do |item| %>
+  <%= content_tag :div, id: "item#{item.id}" do %>
+    <h1><%= item.name %></h1>
+    <p><%= "price: #{item.price}" %></p>  
+    <p><%= "market name: #{item.supermarket.name}" %></p>
+    <p><%= "customer purchases: #{item.how_many_purchases}" %>
+  <% end %>
+<% end %>
