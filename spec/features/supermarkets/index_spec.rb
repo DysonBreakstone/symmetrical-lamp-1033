@@ -1,11 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Supermarket, type: :model do
-  describe 'relationships' do
-    it { should have_many :items }
-  end
-
-  describe 'instance methods' do
+RSpec.describe 'Supermarkets index page', type: :feature do
+  describe "index page" do
     before do
       @market1 = Supermarket.create(name:"market1", location: "location1")
       @market2 = Supermarket.create(name:"market2", location: "location2")
@@ -23,9 +19,22 @@ RSpec.describe Supermarket, type: :model do
       CustomerItem.create(customer_id: @customer3.id, item_id: @item3.id)
     end
 
-    it "#all_customers" do
-      expect(@market1.all_customers).to eq("customer1, customer2")
-      expect(@market3.all_customers).to eq("customer3")
+    it "lists all customers" do
+      visit '/supermarkets'
+
+      expect(page).to have_content("market1")
+      expect(page).to have_content("market2")
+      expect(page).to have_content("market3")
+
+      within("#market#{@market1.id}") do
+        expect(page).to have_content("Customers: #{@customer1.name}, #{@customer2.name}")
+      end
+      within("#market#{@market2.id}") do
+        expect(page).to have_content("Customers: #{@customer2.name}, #{@customer3.name}")
+      end
+      within("#market#{@market3.id}") do
+        expect(page).to have_content("Customers: #{@customer3.name}")
+      end
     end
   end
 end
