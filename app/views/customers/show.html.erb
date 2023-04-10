@@ -1,0 +1,4 @@
+<h1><%= @customer.name %></h1>
+<% @customer.items.each do |item| %>
+<p><%= "#{item.name}: price: #{item.price} market: #{item.supermarket.name}" %></p>
+<% end %>
