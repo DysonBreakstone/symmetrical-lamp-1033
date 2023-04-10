@@ -1,0 +1,6 @@
+<% @markets.each do |market| %>
+  <%= content_tag :div, id: "market#{market.id}" do %>
+    <h1><%= market.name %></h1>
+    <p><%= "Customers: #{market.all_customers}" %></p>
+  <% end %>
+<% end %>
