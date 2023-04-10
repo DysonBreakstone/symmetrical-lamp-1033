@@ -68,5 +68,14 @@ RSpec.describe 'Customer Show page', type: :feature do
       
       expect(page).to have_content("item1")
     end
+
+    it "flashes error message with nonexistant item" do
+      visit "/customers/#{@customer3.id}"
+
+      fill_in("item_id", with: "500000000000000")
+      click_button("Add this item")
+
+      expect(page).to have_content("this is not a valid item.")
+    end
   end
 end
